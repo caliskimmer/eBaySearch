@@ -12,7 +12,7 @@ The purpose of the app is to demonstrate knowledge of Angular and basic Node.js/
 
 Click on the screenshot to visit a video of the app in action.
 
-[![VIDEO](screenshot/eBaySearch.png)](https://www.youtube.com/watch?v=5nNjz_Cux9w&t=53s)]
+[![VIDEO](screenshot/eBaySearch.png)](https://www.youtube.com/watch?v=5nNjz_Cux9w&t=53s)
 
 ### Dependencies
 
