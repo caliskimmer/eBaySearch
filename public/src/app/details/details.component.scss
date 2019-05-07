@@ -1,0 +1,33 @@
+#fb-img {
+    width: 40px;
+    height: 40px;
+}
+
+.mat-icon-align {
+    vertical-align: bottom;
+}
+
+.nav-link {
+    cursor: pointer;
+}
+
+.nav-link.active {
+    background-color: black;
+    color: white;
+
+    &:hover {
+        color: white;
+    }
+}
+
+.nav-tabs {
+    border: none;
+}
+
+.reg-screen {
+    display: inline-block;
+}
+
+.mobile-screen {
+    display: none;
+}

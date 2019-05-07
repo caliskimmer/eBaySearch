@@ -1,0 +1,36 @@
+<div class="container-fluid nav-row">
+    <div class="row">
+        <div class="col p-0 table-responsive">
+            <table class="text-white text-left w-100">
+                <tr *ngFor="let detail of getShippingDetails(); index as i" class="detail-row">
+                    <td class="p-3 pr-2 pl-2 font-weight-bold align-middle">{{detail[0]}}</td>
+                    <td class="p-3 pr-2 pl-2 align-middle">{{detail[1]}}</td>
+                </tr>
+                <tr *ngIf="itemDetailResults.Shipping && itemDetailResults.Shipping.expedited" class="detail-row">
+                    <td class="p-3 pr-2 pl-2 font-weight-bold align-middle">Expedited Shipping</td>
+                    <td class="p-3 pr-2 pl-2 align-middle">
+                        <div *ngIf="itemDetailResults.Shipping.expedited === 'true';then available ;else notAvailable"></div>
+                    </td>
+                </tr>
+                <tr *ngIf="itemDetailResults.Shipping && itemDetailResults.Shipping.oneDayShipping" class="detail-row">
+                    <td class="p-3 pr-2 pl-2 font-weight-bold align-middle">One Day Shipping</td>
+                    <td class="p-3 pr-2 pl-2 align-middle">
+                        <div *ngIf="itemDetailResults.Shipping.oneDayShipping === 'true';then available;else notAvailable"></div>
+                    </td>
+                </tr>
+                <tr *ngIf="itemDetailResults.ReturnsAccepted" class="detail-row">
+                    <td class="p-3 pr-2 pl-2 font-weight-bold align-middle">Return Accepted</td>
+                    <td class="p-3 pr-2 pl-2 align-middle">
+                        <div *ngIf="itemDetailResults.ReturnsAccepted === 'true';then available;else notAvailable"></div>
+                    </td>
+                </tr>
+                <ng-template #notAvailable>
+                    <mat-icon class="red">close</mat-icon>
+                </ng-template>
+                <ng-template #available>
+                    <mat-icon class="green">check</mat-icon>
+                </ng-template>
+            </table>
+        </div>
+    </div>
+</div>

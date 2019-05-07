@@ -1,0 +1,20 @@
+#progress-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+#progress-wrapper {
+    position: relative;
+    width: 40px;
+}
+
+#store-link {
+    color: rgb(86, 145, 139);
+    cursor: pointer;
+}
+
+#star-icon {
+    font-size: 32px;
+}

@@ -1,0 +1,38 @@
+img {
+    width: 100px;
+    height: 100px;
+}
+
+a:not([href]):not([tabindex]) {
+    color: rgb(19, 109, 223);
+
+    &:hover {
+        text-decoration: underline;
+        cursor: text;
+    }
+}
+
+.mat-icon-align {
+    vertical-align: bottom;
+}
+
+.no-img {
+    width: 100px;
+    height: 100px;
+}
+
+
+@media (max-width: 575.98px) {
+    /deep/ .pagination {
+        display: block;
+
+        li {
+            display:inline-block;
+        }
+
+        li:last-of-type {
+            display: block;
+            margin-right: 1.5rem !important;
+        }   
+    }
+}

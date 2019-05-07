@@ -1,0 +1,50 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col p-0 table-responsive">
+            <table class="text-white text-left w-100">
+                <tr *ngIf="itemDetailResults.Seller && itemDetailResults.Seller.Seller" class="detail-row">
+                    <td colspan="2" class="p-3 px-2 font-weight-bold align-middle text-center">
+                        {{itemDetailResults.Seller.Seller.toUpperCase()}}
+                    </td>
+                </tr>
+                <tr *ngIf="itemDetailResults.Seller && itemDetailResults.Seller.Score" class="detail-row">
+                    <td class="p-3 px-2 font-weight-bold align-middle">Feedback Score</td>
+                    <td class="p-3 px-2 align-middle">{{itemDetailResults.Seller.Score}}</td>
+                </tr>
+                <tr *ngIf="itemDetailResults.Seller && itemDetailResults.Seller.Popularity" class="detail-row">
+                    <td class="p-3 px-2 font-weight-bold align-middle">Popularity</td>
+                    <td class="p-3 px-2 align-middle">
+                        <div id="progress-wrapper">
+                            <div id="progress-text">{{itemDetailResults.Seller.Popularity}}</div>
+                            <round-progress [current]="itemDetailResults.Seller.Popularity" [duration]="1" [max]="100" [radius]="20" [stroke]="2" [color]="'#11730f'"></round-progress> 
+                        </div>
+                    </td>
+                </tr>
+                <tr *ngIf="itemDetailResults.Seller && itemDetailResults.Seller.Rating && itemDetailResults.Seller.Score" class="detail-row">
+                    <td class="p-3 px-2 font-weight-bold align-middle">Feedback Rating Star</td>
+                    <td class="p-3 px-2 align-middle"><mat-icon id="star-icon" [ngStyle]="{'color': getFeedbackColor(itemDetailResults.Seller.Rating)}">{{getFeedbackType(itemDetailResults.Seller.Score)}}</mat-icon></td>
+                </tr>
+                <tr *ngIf="itemDetailResults.Seller && itemDetailResults.Seller.IsTopRated" class="detail-row">
+                    <td class="p-3 px-2 font-weight-bold align-middle">Top Rated</td>
+                    <td class="p-3 px-2 align-middle">
+                        <div *ngIf="itemDetailResults.Seller.IsTopRated === true;then available; else notAvailable"></div>
+                    </td>
+                </tr>
+                <tr *ngIf="itemDetailResults.Store && itemDetailResults.Store.Name" class="detail-row">
+                    <td class="p-3 px-2 font-weight-bold align-middle">Store Name</td>
+                    <td class="p-3 px-2 align-middle">{{itemDetailResults.Store.Name}}</td>
+                </tr>
+                <tr *ngIf="itemDetailResults.Store && itemDetailResults.Store.Name" class="detail-row">
+                    <td class="p-3 px-2 font-weight-bold align-middle">Buy Product At</td>
+                    <td class="p-3 px-2 align-middle"><a id="store-link" target="_blank" [href]="itemDetailResults.Store.URL">Store</a></td>
+                </tr>
+                <ng-template #notAvailable>
+                    <mat-icon class="red">close</mat-icon>
+                </ng-template>
+                <ng-template #available>
+                    <mat-icon class="green">check</mat-icon>
+                </ng-template>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+<div class="container-fluid p-0">
+    <ng-template #noResults>
+        <div class="no-records p-3 mt-5">No Records.</div>
+    </ng-template>
+    <div *ngIf="similarProdResults.items.length > 0;else noResults">
+        <div class="row mb-3 mt-4">
+            <div class="col-lg-2">
+                <select name="sortType" class="form-control" (change)="setSortValue($event)">
+                    <option value="Default">Default</option>
+                    <option value="ProductName">Product Name</option>
+                    <option value="DaysLeft">Days Left</option>
+                    <option value="Price">Price</option>
+                    <option value="ShippingCost">Shipping Cost</option>
+                </select>
+            </div>
+            <div class="col-lg-2">
+                <select name="sortDirection" class="form-control" [disabled]="sortValue === 'Default'" (change)="setSortType($event)">
+                    <option value="Ascending">Ascending</option>
+                    <option value="Descending">Descending</option>
+                </select>
+            </div>
+        </div>
+        <div *ngFor="let item of similarProdResults.items; index as i" class="row rounded bg-hw8 m-0 my-2 pl-3 pt-2 pb-4 py-lg-2 px-lg-0" [ngClass]="{'d-none': hideResults && i > 4}">
+            <div class="text-left text-lg-center col-lg-2 px-2 pl-lg-0 py-1">
+                <a [href]="item.imageURL" target="_blank">
+                    <img [src]="item.imageURL" />
+                </a>
+            </div>
+            <div class="col-lg-10 text-left pt-2 pl-2">
+                <div id="title"><a target="_blank" [href]="item.url">{{item.title}}</a></div>
+                <div id="price" *ngIf="item.price">Price: {{item.price}}</div>
+                <div id="shipping" *ngIf="item.shipping">Shipping Cost: {{item.shipping}}</div>
+                <div class="text-white" *ngIf="item.daysLeft">Days Left: {{item.daysLeft}}</div>
+            </div>
+            <ng-template #noImage>
+                <div id="no-img" class="bg-light"></div>
+            </ng-template>
+        </div>
+        <div class="row d-flex justify-content-center" *ngIf="similarProdResults.items.length > 5">
+            <button type="button" class="btn btn-dark" [ngClass]="{'mt-5': hideResults}" (click)="triggerHideResults()">{{(hideResults) ? "Show More" : "Show Less"}}</button>
+        </div>
+    </div>
+</div>

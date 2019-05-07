@@ -1,0 +1,55 @@
+.toggle-dark {
+    background-color: black;
+    color: white;
+
+    .btn-toggle {
+        &:hover {
+            background-color: black;
+        }
+    }
+}
+
+.toggle-light {
+    background-color: white;
+    .btn-toggle {
+        background-color: white;
+        &:hover {
+            background-color: white;
+        }
+    }
+}
+
+.btn-toggle {
+    border: 0px solid transparent;
+}
+
+.btn[disabled] {
+    opacity: 70%;
+    background-color: white;
+    color: black;
+}
+
+/deep/ .page-item.active .page-link {
+    background-color: black;
+    color: white;
+    text-decoration: none;
+}
+
+/deep/ .page-link {
+    color: black;
+    border: none;
+
+    &:hover {
+        color: black;
+        text-decoration: underline;
+    }
+}
+
+.progress {
+    width: 100%;
+    left: -100%;
+
+    .progress-bar {
+        width: 50%;
+    }
+}

@@ -1,0 +1,22 @@
+img {
+    width: 100px;
+    height: 100px;
+}
+
+a:not([href]):not([tabindex]) {
+    color: rgb(19, 109, 223);
+
+    &:hover {
+        text-decoration: underline;
+        cursor: text;
+    }
+}
+
+// necessary to fix weird height problem
+button {
+    height: 38px;
+}
+
+.selected {
+    background-color: rgb(190, 192, 194);
+}

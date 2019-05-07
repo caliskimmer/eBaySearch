@@ -1,0 +1,58 @@
+<div class="container-fluid mt-1" @noop>
+    <div class="row text-center">
+        <div class="col">
+            <h4>{{itemDetailResults['Title']}}</h4>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-10 d-flex justify-content-start align-items-center">
+            <button type="button" class="btn btn-light nav-button" (click)="backToMain.emit()">
+                <mat-icon class="mat-icon-align">keyboard_arrow_left</mat-icon>List
+            </button>
+        </div>
+        <div class="col-2 d-flex justify-content-end">
+            <a class="btn btn-default p-0" [href]="share(itemDetailResults['URL'], itemDetailResults['Price'], itemDetailResults['Title'])" target="_blank">
+                <img id="fb-img" src="http://csci571.com/hw/hw8/Images/facebook.png" />
+            </a>
+            <button type="button" class="btn btn-light" (click)="toggleStorage()">
+                <mat-icon *ngIf="!getStorageItem(itemDetailResults['ItemID']);else itemAdded" class="mat-icon-align">add_shopping_cart</mat-icon>
+            </button>
+            <ng-template #itemAdded>
+                <mat-icon class="mat-icon-align text-warning">remove_shopping_cart</mat-icon>
+            </ng-template>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col d-flex justify-content-end">
+            <ul class="nav nav-tabs">
+                <li class="nav-item" (click)="setComponent('Product')">
+                    <a class="nav-link px-1 px-sm-3" [ngClass]="{'active': currentComponent === 'Product'}">Product</a>
+                </li>
+                <li class="nav-item" (click)="setComponent('Photos')">
+                    <a class="nav-link px-1 px-sm-3" [ngClass]="{'active': currentComponent === 'Photos'}">Photos</a>
+                </li>
+                <li class="nav-item" (click)="setComponent('Shipping')">
+                    <a class="nav-link px-1 px-sm-3" [ngClass]="{'active': currentComponent === 'Shipping'}">Shipping</a>
+                </li>
+                <li class="nav-item" (click)="setComponent('Seller')">
+                    <a class="nav-link px-1 px-sm-3" [ngClass]="{'active': currentComponent === 'Seller'}">Seller</a>
+                </li>
+                <li class="nav-item" (click)="setComponent('SimilarProducts')">
+                    <a class="nav-link px-3 d-none d-sm-inline-block" [ngClass]="{'active': currentComponent === 'SimilarProducts'}">Similar Products</a>
+                    <a class="nav-link px-1 d-sm-none" [ngClass]="{'active': currentComponent === 'SimilarProducts'}">Related</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row nav-row mx-0">
+    </div>
+    <div class="row text-center">
+        <div class="col">
+            <app-product *ngIf="currentComponent === 'Product'" [itemDetailResults]="itemDetailResults" @fadeIn></app-product>
+            <app-photos *ngIf="currentComponent === 'Photos'" [photoResults]="searchPhotos" @fadeIn></app-photos>
+            <app-shipping *ngIf="currentComponent === 'Shipping'" [itemDetailResults]="itemDetailResults" @fadeIn></app-shipping>
+            <app-seller *ngIf="currentComponent === 'Seller'" [itemDetailResults]="itemDetailResults" @fadeIn></app-seller>
+            <app-similar-products *ngIf="currentComponent === 'SimilarProducts'" [similarProdResults]="similarProdResults" @fadeIn></app-similar-products>
+        </div>
+    </div>
+</div>

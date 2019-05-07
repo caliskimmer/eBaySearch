@@ -1,0 +1,9 @@
+# Mac-specific
+.DS_Store
+
+# Node
+/node_modules
+
+# Other
+*.swp
+.env

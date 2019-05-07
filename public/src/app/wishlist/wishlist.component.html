@@ -1,0 +1,48 @@
+<div class="container-fluid">
+    <ng-template #noRecords>
+        <div class="no-records p-3">No Records.</div>
+    </ng-template>
+    <div *ngIf="getStorageSize() > 0;else noRecords">
+        <div class="row justify-content-sm-center">
+            <div class="col table-responsive">
+                <table class="text-white w-100 text-left">
+                    <tr class="detail-row">
+                        <th class="pl-3 pr-2 pt-3 pb-3 align-top">#</th>
+                        <th class="pl-3 pr-2 pt-3 pb-3 align-top">Image</th>
+                        <th class="pl-3 pr-2 pt-3 pb-3 align-top">Title</th>
+                        <th class="pl-3 pr-2 pt-3 pb-3 align-top">Price</th>
+                        <th class="pl-3 pr-2 pt-3 pb-3 align-top">Shipping</th>
+                        <th class="pl-3 pr-2 pt-3 pb-3 align-top">Seller</th>
+                        <th class="pl-3 pr-2 pt-3 pb-3 align-top" nowrap>Wish List</th>
+                    </tr>
+
+                    <ng-template #missing>
+                        <td class="pl-2 pr-3 pt-3 align-top">N/A</td>
+                    </ng-template>
+                    <tr class="item-row detail-row" *ngFor="let item of getStorageItems(); index as i" class="detail-row" [ngClass]="{selected: selectedItem.id === item.id && !selectedItem.isRes}">
+                        <td class="pl-3 pr-2 pt-3 align-top">{{i+1}}</td>
+                        <td class="pl-3 pr-2 pt-3 pb-3 align-top" *ngIf="item.image; else missing"><a href="{{item.image}}" target="_blank"><img src="{{item.image}}"/></a></td>
+                        <td class="text-nowrap pl-3 pr-2 pt-3 align-top" *ngIf="item.title; else missing"><a (click)="switchToDetail({'id':item.id, 'returnsAccepted':item.returnsAccepted, 'shipping':item.shipping})"><span matTooltip="{{item.title}}" matTooltipClass="text-center w-75 mx-auto mt-1 p-1">{{truncate(item.title)}}</span></a></td>
+                        <td class="pl-3 pr-2 pt-3 align-top" *ngIf="item.price; else missing">{{item.price}}</td>
+                        <td class="pl-3 pr-2 pt-3 align-top" *ngIf="item.shipping && item.shipping.type; else missing" nowrap>{{item.shipping.type}}</td>
+                        <td class="pl-3 pr-2 pt-3 align-top" *ngIf="item.seller; else missing">{{item.seller.toUpperCase()}}</td>
+                        <td class="pl-3 pr-2 pt-3 align-top">
+                            <button type="button" class="btn btn-light" (click)="removeFromStorage(item.id)">
+                                <mat-icon class="mat-icon-align text-warning">remove_shopping_cart</mat-icon>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr class="detail-row">
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td class="p-3 pr-2 pl-2 font-weight-bold align-top">Total Shopping</td>
+                        <td class="pl-3 pr-2 pt-3 pb-3 font-weight-bold align-top">${{totalShopping.toFixed(2)}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

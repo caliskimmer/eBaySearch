@@ -1,0 +1,33 @@
+#modal-link {
+    color: rgb(86, 145, 139);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.disabled {
+    pointer-events: none;
+    cursor: default;
+}
+
+#close-button:focus {
+   outline: none;
+}
+
+:focus {
+    outline: none;
+}
+
+.carousel-img {
+    width: 100%;
+    border: solid rgb(30, 32, 36) 13px;
+    border-radius: .25rem;
+}
+
+/deep/ span.carousel-control-prev-icon {
+    background-color: black;
+}
+
+/deep/ span.carousel-control-next-icon {
+    background-color: black;
+}
+

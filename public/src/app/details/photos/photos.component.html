@@ -1,0 +1,22 @@
+<div class="container-fluid p-2">
+    <ng-template #noResults>
+        <div class="no-records p-3 mt-5">No Records.</div>
+    </ng-template>
+    <div class="row" *ngIf="photoResults && photoResults.images.length > 0; else noResults">
+        <div class="col-sm p-0">
+            <div class="row mx-1" *ngFor="let image of photoFirst2">
+                <a [href]="image" target="_blank"><img class="row-img mb-2" [src]="image"/></a>
+            </div>
+        </div>
+        <div class="col-sm p-0">
+            <div class="row mx-1" *ngFor="let image of photoNext3">
+                <a [href]="image" target="_blank"><img class="row-img mb-2" [src]="image"/></a>
+            </div>
+        </div>
+        <div class="col-sm p-0">
+            <div class="row mx-1" *ngFor="let image of photoLast3">
+                <a [href]="image" target="_blank"><img class="row-img mb-2" [src]="image"/></a>
+            </div>
+        </div>
+    </div>
+</div>
